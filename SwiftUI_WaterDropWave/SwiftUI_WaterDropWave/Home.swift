@@ -37,7 +37,7 @@ struct Home: View {
                         .scaleEffect(x: 1.1, y: 1)
                         .offset(y: -1)
                     // Wave Form Shape
-                    WaterWave(progress: 0.5, waveHeight: 0.1, offset: startAnimation)
+                    WaterWave(progress: progress, waveHeight: 0.05, offset: startAnimation)
                         .fill(Color("Blue"))
                         .overlay(content: {
                             ZStack {
@@ -76,7 +76,17 @@ struct Home: View {
                         }
                     // Add Button
                         .overlay(alignment: .bottom) {
-                            
+                            Button {
+                                progress += 0.1
+                            } label: {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 40, weight: .black))
+                                    .foregroundColor(Color("Blue"))
+                                    .shadow(radius: 2)
+                                    .padding(25)
+                                    .background(.white, in: Circle())
+                            }
+                            .offset(y: 40)
                         }
                 }
                 .frame(width: size.width, height: size.height, alignment: .center)
