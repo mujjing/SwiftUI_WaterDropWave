@@ -37,7 +37,7 @@ struct Home: View {
                         .scaleEffect(x: 1.1, y: 1)
                         .offset(y: -1)
                     // Wave Form Shape
-                    WaterWave(progress: 0.5, waveHeight: 0.1, offset: size.width)
+                    WaterWave(progress: 0.5, waveHeight: 0.1, offset: startAnimation)
                         .fill(Color("Blue"))
                         .overlay(content: {
                             ZStack {
@@ -74,10 +74,17 @@ struct Home: View {
                                 .aspectRatio(contentMode: .fit)
                                 .padding(20)
                         }
+                    // Add Button
+                        .overlay(alignment: .bottom) {
+                            
+                        }
                 }
                 .frame(width: size.width, height: size.height, alignment: .center)
                 .onAppear {
                     //Lopping Animation
+                    withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
+                        startAnimation = size.width
+                    }
                 }
             }
             .frame(height: 350)
